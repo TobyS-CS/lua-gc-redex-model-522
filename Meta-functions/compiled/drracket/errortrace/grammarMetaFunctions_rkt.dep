@@ -1,0 +1,1 @@
+("8.12" ta6osx ("0617d9f02d80061aa7984a2418fa93aba52a0173" . "e860ff3d9855093140e9435bcb5286de519a9652") #"/Users/sean.h.koo/Desktop/CS522/lua-gc-redex-model-522/Meta-functions/../grammar.rkt" (collects #"drracket" #"private" #"drracket-errortrace-key.rkt") (collects #"racket" #"main.rkt") (collects #"racket" #"runtime-config.rkt") (collects #"redex" #"main.rkt"))

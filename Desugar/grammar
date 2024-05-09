@@ -13,105 +13,122 @@
 %left  '*' '/' '%'
 %left  'NOT' '#' 'UNM'
 %right  '^'
-%left '+' '-'
-%left '*' '/' '%'
-%left BITWISE_SHIFT_LEFT BITWISE_SHIFT_RIGHT
-%left BITWISE_AND
-%left BITWISE_XOR
 %left BITWISE_OR
+%left BITWISE_XOR
+%left BITWISE_AND
+%left SHIFT_LEFT SHIFT_RIGHT
 %right BITWISE_NOT
-%left 'LT' 'GT' 'LE' 'GE' 'EQ' 'NOTEQ'
-%left 'AND'
-%left 'OR'
 %start (chunk)
 %%
-chunk: block 
+chunk: block
 ;
-block: stats 
-| retstat 
-| stats retstat 
-| 
+
+block: stats
+| retstat
+| stats retstat
+|
 ;
-stats: stat 
-| stats stat 
+
+stats: stat
+| stats stat
 ;
-prefixexp: var 
-| '(' exp ')' 
-| functioncall 
+
+prefixexp: var
+| '(' exp ')'
+| functioncall
 ;
-stat: ';' 
-| varlist '=' explist 
-| 'BREAK' 
-| statfunctioncall 
-| beginning_do block 'END' 
-| beginning_while exp 'DO' block 'END' 
-| 'LOCAL' namelist 
-| 'LOCAL' namelist '=' explist 
-| if_guard_branch 'END' 
-| if_guard_branch else_elseif 'END' 
-| 'FUNCTION' dotsepnamelist funcbody 
-| 'FUNCTION' method_name funcbody 
-| local_function funcbody 
-| numeric_for_beginning block 'END' 
-| generic_for_beginning block 'END' 
+
+stat: ';'
+| varlist '=' explist
+| 'BREAK'
+| statfunctioncall
+| beginning_do block 'END'
+| beginning_while exp 'DO' block 'END'
+| 'LOCAL' namelist
+| 'LOCAL' namelist '=' explist
+| if_guard_branch 'END'
+| if_guard_branch else_elseif 'END'
+| 'FUNCTION' dotsepnamelist funcbody
+| 'FUNCTION' method_name funcbody
+| local_function funcbody
+| numeric_for_beginning block 'END'
+| generic_for_beginning block 'END'
 ;
-generic_for_beginning: 'FOR' namelist 'IN' explist 'DO' 
+
+generic_for_beginning: 'FOR' namelist 'IN' explist 'DO'
 ;
-numeric_for_beginning: 'FOR' NAME '=' exp ',' exp ',' exp 'DO' 
-| 'FOR' NAME '=' exp ',' exp 'DO' 
+
+numeric_for_beginning: 'FOR' NAME '=' exp ',' exp ',' exp 'DO'
+| 'FOR' NAME '=' exp ',' exp 'DO'
 ;
-method_name: dotsepnamelist ':' NAME 
+
+method_name: dotsepnamelist ':' NAME
 ;
-local_function: 'LOCAL' 'FUNCTION' NAME 
+
+local_function: 'LOCAL' 'FUNCTION' NAME
 ;
-beginning_if: 'IF' 
+
+beginning_if: 'IF'
 ;
-beginning_else: 'ELSE' 
+
+beginning_else: 'ELSE'
 ;
-beginning_elseif: 'ELSEIF' 
+
+beginning_elseif: 'ELSEIF'
 ;
-if_guard_branch: beginning_if exp 'THEN' block 
+
+if_guard_branch: beginning_if exp 'THEN' block
 ;
-elseif_guard_branch: beginning_elseif exp 'THEN' block 
+
+elseif_guard_branch: beginning_elseif exp 'THEN' block
 ;
-else_elseif: beginning_else block 
-| elseif_guard_branch 
-| elseif_guard_branch else_elseif 
+
+else_elseif: beginning_else block
+| elseif_guard_branch
+| elseif_guard_branch else_elseif
 ;
+
 beginning_while: 'WHILE' %prec BEGINNING_WHILE
 ;
+
 beginning_do: 'DO' %prec BEGINNING_DO_END
 ;
-var: NAME 
-| prefixexp '[' exp ']' 
-| prefixexp '.' NAME 
+
+var: NAME
+| prefixexp '[' exp ']'
+| prefixexp '.' NAME
 ;
-funcbody_formal_parameters: '(' parlist ')' 
-| '(' ')' 
+
+funcbody_formal_parameters: '(' parlist ')'
+| '(' ')'
 ;
-funcbody: funcbody_formal_parameters block 'END' 
+
+funcbody: funcbody_formal_parameters block 'END'
 ;
-retstat: 'RETURN' 
-| 'RETURN' ';' 
-| 'RETURN' explist 
-| 'RETURN' explist ';' 
+
+retstat: 'RETURN'
+| 'RETURN' ';'
+| 'RETURN' explist
+| 'RETURN' explist ';'
 ;
-explist: exp 
-| explist ',' exp 
+
+explist: exp
+| explist ',' exp
 ;
-exp: 'VARARG' 
-| STRING 
-| NUMBER 
-| HEX-NMBR-BINPOT 
-| 'NIL' 
-| 'TRUE' 
-| 'FALSE' 
-|exp '+' exp
+
+exp: 'VARARG'
+| STRING
+| NUMBER
+| HEX-NMBR-BINPOT
+| 'NIL'
+| 'TRUE'
+| 'FALSE'
+| exp '+' exp
 | exp '-' exp
 | exp '*' exp
 | exp '/' exp
 | exp '%' exp
-| exp '^' exp  % This is existing for exponentiation, ensure no conflict with XOR
+| exp '^' exp
 | exp 'BITWISE_AND' exp
 | exp 'BITWISE_OR' exp
 | exp 'BITWISE_XOR' exp
@@ -129,51 +146,64 @@ exp: 'VARARG'
 | 'NOT' exp
 | '#' exp
 | '-' exp %prec UNM
-| tableconstructor 
-| prefixexp 
-| functiondef 
+| tableconstructor
+| prefixexp
+| functiondef
 ;
-varlist: var 
-| varlist ',' var 
+
+varlist: var
+| varlist ',' var
 ;
-functioncall: prefixexp args 
-| prefixexp ':' NAME args 
+
+functioncall: prefixexp args
+| prefixexp ':' NAME args
 ;
-statfunctioncall: prefixexp args 
-| prefixexp ':' NAME args 
+
+statfunctioncall: prefixexp args
+| prefixexp ':' NAME args
 ;
-args: '(' explist ')' 
-| '(' ')' 
-| tableconstructor 
-| STRING 
+
+args: '(' explist ')'
+| '(' ')'
+| tableconstructor
+| STRING
 ;
-namelist: NAME 
-| namelist ',' NAME 
+
+namelist: NAME
+| namelist ',' NAME
 ;
-parlist: namelist 
-| namelist ',' 'VARARG' 
-| 'VARARG' 
+
+parlist: namelist
+| namelist ',' 'VARARG'
+| 'VARARG'
 ;
-func_signature: 'FUNCTION' '(' parlist ')' 
-| 'FUNCTION' '(' ')' 
+
+func_signature: 'FUNCTION' '(' parlist ')'
+| 'FUNCTION' '(' ')'
 ;
-functiondef: func_signature block 'END' 
+
+functiondef: func_signature block 'END'
 ;
-dotsepnamelist: NAME 
-| dotsepnamelist '.' NAME 
+
+dotsepnamelist: NAME
+| dotsepnamelist '.' NAME
 ;
-tableconstructor: '{' fieldlist '}' 
-| '{' '}' 
+
+tableconstructor: '{' fieldlist '}'
+| '{' '}'
 ;
-fieldlist: field 
-| fieldlist fieldsep field 
-| fieldlist fieldsep 
+
+fieldlist: field
+| fieldlist fieldsep field
+| fieldlist fieldsep
 ;
-fieldsep: ',' 
-| ';' 
+
+fieldsep: ','
+| ';'
 ;
-field: '[' exp ']' '=' exp 
-| NAME '=' exp 
-| exp 
+
+field: '[' exp ']' '=' exp
+| NAME '=' exp
+| exp
 ;
 %%

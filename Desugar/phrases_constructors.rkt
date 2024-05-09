@@ -91,6 +91,18 @@
 
 (struct conc-stats (stats))
 
+(struct bitwise-and (left right))
+
+(struct bitwise-or (left right))
+
+(struct bitwise-xor (left right))
+
+(struct bitwise-not (expr))
+
+(struct shift-left (left right))
+
+(struct shift-right (left right))
+
 ; TODO: no debería utilizar esta construcción
 (struct do-end (stats))
 
@@ -288,7 +300,9 @@
                                             (list 'in)
                                             (list (concrete-grammar-s scope))
                                             (list 'end)))
-
+    ((bitwise-and left right) (list (concrete-grammar-e left)
+                               (term &)
+                               (concrete-grammar-e right)))
     
     ((conc-stats stats) (concrete-grammar-conc-stats (conc-stats stats)))
     

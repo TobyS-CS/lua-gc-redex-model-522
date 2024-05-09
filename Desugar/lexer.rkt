@@ -199,7 +199,6 @@
    )
    ("<<" (token-SHIFT_LEFT))
    (">>" (token-SHIFT_RIGHT))
-   ...
    ("-" (token--))
    ; Translate to Racket's hexadecimal numbers' notation
    (simp-hex-number-lit
