@@ -186,19 +186,11 @@
    ; exact->inexact, to use IEEE floating-point representation of a number,
    ; same as Lua
    (number-lit (token-NUMBER (exact->inexact (string->number lexeme))))
-   ("&" (token-BITWISE_AND))
-   ("|" (token-BITWISE_OR))
-   ("^" (token-BITWISE_XOR))
-   ("~" (lambda ()
-          (let ((next-char (peek-char input-port)))
-            (cond ((char=? next-char #\=) ; Check for inequality operator
-                   (read-char input-port) ; Consume '='
-                   (token-NOTEQ))
-                  (else
-                   (token-BITWISE_NOT)))))
-   )
-   ("<<" (token-SHIFT_LEFT))
-   (">>" (token-SHIFT_RIGHT))
+  ("&" (token-BITWISE_AND))
+  ("|" (token-BITWISE_OR))
+  ("^" (token-BITWISE_XOR))
+  ("<<" (token-SHIFT_LEFT))
+  (">>" (token-SHIFT_RIGHT))
    ("-" (token--))
    ; Translate to Racket's hexadecimal numbers' notation
    (simp-hex-number-lit

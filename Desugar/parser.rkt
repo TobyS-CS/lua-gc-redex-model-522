@@ -34,25 +34,20 @@
    
    ; Tokens declaration
    (tokens empty-tokens
-        non-empty-tokens
-        BITWISE_AND BITWISE_OR BITWISE_XOR BITWISE_NOT SHIFT_LEFT SHIFT_RIGHT)
+           non-empty-tokens)
+   
    ; Prec. declarations, to avoid shit-reduce conflicts
    (precs (nonassoc BEGINNING_WHILE)
           (nonassoc BEGINNING_DO_END)
           (left OR)
           (left AND)
-          (left BITWISE_OR)
-          (left BITWISE_XOR)
-          (left BITWISE_AND)
-          (left EQ NOTEQ LT LE GT GE)
-          (left SHIFT_LEFT SHIFT_RIGHT)
+          (left LT GT LE GE EQ NOTEQ)
+          (right CONCAT)
           (left + -)
           (left * / %)
           ; UNM: to give higher precedence to the unary negation.
           (left NOT \# UNM)
-          (right CONCAT)
-          (right ^)
-          (right BITWISE_NOT))
+          (right ^))
    
    ; Lua's grammar
    (grammar
@@ -421,12 +416,6 @@
          ((exp AND exp) (binop (\\and) $1 $3))
          ((exp OR exp) (binop (\\or) $1 $3))
          ((NOT exp) (unop (\\not) $2))
-         ((exp BITWISE_AND exp) (binop (bitwise-and) $1 $3))
-         ((exp BITWISE_OR exp) (binop (bitwise-or) $1 $3))
-         ((exp BITWISE_XOR exp) (binop (bitwise-xor) $1 $3))
-         ((BITWISE_NOT exp) (unop (bitwise-not) $2))
-         ((exp SHIFT_LEFT exp) (binop (shift-left) $1 $3))
-         ((exp SHIFT_RIGHT exp) (binop (shift-right) $1 $3))
          ((\# exp) (unop (len) $2))
          ;  // NOTE: the precedence of a rule is determined by that of its last terminal
          ;  // symbol. In this case, the tokens that represents the operators. That's why
