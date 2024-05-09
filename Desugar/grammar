@@ -2,6 +2,7 @@
 %token NUMBER
 %token HEX-NMBR-BINPOT
 %token NAME
+%token BITWISE_AND BITWISE_OR BITWISE_XOR BITWISE_NOT SHIFT_LEFT SHIFT_RIGHT
 %nonassoc  'BEGINNING_WHILE'
 %nonassoc  'BEGINNING_DO_END'
 %left  'OR'
@@ -12,6 +13,16 @@
 %left  '*' '/' '%'
 %left  'NOT' '#' 'UNM'
 %right  '^'
+%left '+' '-'
+%left '*' '/' '%'
+%left BITWISE_SHIFT_LEFT BITWISE_SHIFT_RIGHT
+%left BITWISE_AND
+%left BITWISE_XOR
+%left BITWISE_OR
+%right BITWISE_NOT
+%left 'LT' 'GT' 'LE' 'GE' 'EQ' 'NOTEQ'
+%left 'AND'
+%left 'OR'
 %start (chunk)
 %%
 chunk: block 
@@ -95,23 +106,28 @@ exp: 'VARARG'
 | 'NIL' 
 | 'TRUE' 
 | 'FALSE' 
-| exp '+' exp 
-| exp '-' exp 
-| exp '*' exp 
-| exp '/' exp 
-| exp '%' exp 
-| exp '^' exp 
-| exp 'LT' exp 
-| exp 'LE' exp 
-| exp 'GT' exp 
-| exp 'GE' exp 
-| exp 'EQ' exp 
-| exp 'NOTEQ' exp 
-| exp 'CONCAT' exp 
-| exp 'AND' exp 
-| exp 'OR' exp 
-| 'NOT' exp 
-| '#' exp 
+|exp '+' exp
+| exp '-' exp
+| exp '*' exp
+| exp '/' exp
+| exp '%' exp
+| exp '^' exp  % This is existing for exponentiation, ensure no conflict with XOR
+| exp 'BITWISE_AND' exp
+| exp 'BITWISE_OR' exp
+| exp 'BITWISE_XOR' exp
+| 'BITWISE_NOT' exp
+| exp 'SHIFT_LEFT' exp
+| exp 'SHIFT_RIGHT' exp
+| exp 'LT' exp
+| exp 'LE' exp
+| exp 'GT' exp
+| exp 'GE' exp
+| exp 'EQ' exp
+| exp 'NOTEQ' exp
+| exp 'AND' exp
+| exp 'OR' exp
+| 'NOT' exp
+| '#' exp
 | '-' exp %prec UNM
 | tableconstructor 
 | prefixexp 
