@@ -281,6 +281,19 @@
                                                      (return ($builtIn math.max (<<<)))
                                                      end))
                ))
+   (cons "math.maxinteger"
+         (term (((_ENV \[ "math" \]) \[ "maxinteger" \])
+                = (function $maxinteger (<<<)
+                        (return ($builtIn maxinteger (<<<)))
+                        end))
+            ))
+
+   (cons "math.mininteger"
+         (term (((_ENV \[ "math" \]) \[ "mininteger" \])
+                = (function $mininteger (<<<)
+                        (return ($builtIn mininteger (<<<)))
+                        end))
+            ))
    
    (cons "math.modf"
          (term (((_ENV \[ "math" \]) \[ "modf" \]) = (function
@@ -331,6 +344,12 @@
                             (return ($builtIn math.tanh (<<<)))
                             end))
                ))
+   (cons "math.type"
+         (term (((_ENV \[ "math" \]) \[ "type" \])
+                = (function $math.type (<<<)
+                        (return ($builtIn math.type (<<<)))
+                        end))
+            ))
    ;                         
    ;                         
    ;   ;                                                          

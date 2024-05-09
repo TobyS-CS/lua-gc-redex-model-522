@@ -21,12 +21,15 @@
   [s sing
      (sing_1 sing_2 sing_3 ...)]
 
-  [v nil Boolean Number String]
+  [v nil Boolean Number Integer String]
 
   [Boolean true false]
     
   ; Number represents real (double-precision floating-point) numbers
   [Number real]
+
+  ; Integer represents integer numbers
+  [Integer integer]
   
   [String string]
 
@@ -76,6 +79,7 @@
                setmetatable
                tonumber
                tostring
+               tointeger
                type
                xpcall
                ; debug
@@ -94,6 +98,8 @@
                math.fmod
                math.log
                math.max
+               math.maxinteger
+               math.mininteger
                math.modf
                math.rad
                math.sin
@@ -101,6 +107,8 @@
                math.sqrt
                math.tan
                math.tanh
+               math.tointeger
+               math.type
                ; package
                require
                ; string

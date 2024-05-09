@@ -200,6 +200,8 @@
                                           math.fmod
                                           math.log
                                           math.max
+                                          math.maxinteger
+                                          math.mininteger
                                           math.modf
                                           math.rad
                                           math.sin
@@ -207,6 +209,8 @@
                                           math.sqrt
                                           math.tan
                                           math.tanh
+                                          math.tointeger
+                                          math.type
                                           ; string
                                           string.len
                                           string.rep

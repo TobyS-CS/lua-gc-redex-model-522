@@ -580,6 +580,56 @@
   [(δmath math.tanh Number)
    ,(tanh (term Number))]
 
+  ; math.type
+  [(δmath math.type v_1 v_2 v_3 ...)
+   (δmath math.type v_1)]
+  
+  [(δmath math.type String)
+   (δmath math.type Number)
+   
+     (where Number (δbasic tonumber String nil))]
+  
+  [(δmath math.type Number)
+    ,(if (exact-integer? (term Number))
+          "integer"
+          "float")]
+ ;maxinteger
+  [(δmath math.maxinteger)
+   ,(term 9223372036854775807)]
+
+ ;mininteger
+  [(δmath math.mininteger)
+   ,(term -9223372036854775808)]
+
+;tointeger
+
+ [(δmath math.tointeger v_1 v_2 v_3 ...)
+   (δmath math.tointeger v_1)]
+  
+  [(δmath math.tointeger String)
+   (δmath math.tointeger Number)
+   
+     (where Number (δbasic tonumber String nil))]
+  
+  [(δmath math.tointeger Number)
+    ,(if (integer? (term Number))
+          (exact-round(term Number))
+          (term nil))]
+
+  ; math.ult (m, n)
+  [(δmath math.ult m n v_3 ...)
+   (δmath math.ult m n)]
+  
+  [(δmath math.ult String_m String_n)
+   (δmath math.ult Number_m Number_n)
+   
+     (where [Number_m (δbasic tonumber String_m nil)] [Number_n (δbasic tonumber String_n nil)])]
+  
+  [(δmath math.ult Number_m Number_n)
+    ,(if (and (integer? term Number_m) (integer? term Number_n))
+        ;HERE
+    )]
+
   ; default case of math functions
   [(δmath builtinserv any ...)
    (δbasic error String)
@@ -587,6 +637,5 @@
    (where String ,(string-append "erroneous actual parameters to "
                                  (symbol->string (term builtinserv))))
    ]
-  )
-
+)
 (provide δmath)

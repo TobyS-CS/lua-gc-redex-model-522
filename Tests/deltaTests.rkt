@@ -878,7 +878,30 @@
   
   (test-equal (term (δ math.tanh true))
               (term ($err "erroneous actual parameters to math.tanh")))
-  
+  ; type
+  (test-equal (term (δ math.type 1))
+              (term "integer"))
+
+  (test-equal (term (δ math.type 1.0))
+            (term "float"))
+
+  (test-equal (term (δ math.maxinteger))
+            (term 9223372036854775807))
+
+  (test-equal (term (δ math.mininteger))
+            (term -9223372036854775808))
+
+  (test-equal (term (δ math.tointeger 1))
+            (term 1))
+
+  (test-equal (term (δ math.tointeger 2.0))
+            (term 2))
+
+  (test-equal (term (δ math.tointeger "1"))
+            (term 1))
+
+  (test-equal (term (δ math.tointeger "2.0"))
+            (term 2))
   
   
   ;                                          
