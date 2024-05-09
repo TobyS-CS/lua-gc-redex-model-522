@@ -1297,6 +1297,52 @@
                             ((λ ()
                                (ext-number-parse-this (term String)
                                                       (term Number))))))]
+  ; tointeger
+  [(δbasic tointeger v)
+   (δbasic tointeger v nil)]
+
+  [(δbasic tointeger v_1 v_2 v_3 v_4 ...)
+   (δbasic tointeger v_1 v_2)]
+  
+  [(δbasic tointeger Integer v)
+   (δbasic tointeger String v)
+
+   ; since Number could be in a non-decimal base v, it is easier to coerce it
+   ; to string, and apply the same algorithm of conversion over it
+   (where String (δbasic tostring Number ()))]
+
+  ; decimal number, no base specified
+  [(δbasic tointeger String nil)
+   v
+   
+   ; in this case tointeger converts String following the rules of the lexer,
+   ; as said by the semantics; however, lexer alone will not suffice: for example,
+   ; in cases of malformed strings beginning with a correct string representation
+   ; of integer we need to resort to parsing
+   (where v ,(with-handlers ([exn:fail? (λ (e) (term nil))])
+                            ((λ ()
+                               (integer-parse-this (term String))))))]
+
+  ; {v ∉ String}
+  [(δbasic tointeger v nil)
+   nil]
+
+  ; base out of range
+  [(δbasic tointeger v 1)
+   (δbasic error String)
+
+   (where String ,(string-append
+                   "bad argument #2 to 'tointeger' (base out of range)"))]
+  
+  ; when called with a base (Integer), then the first argument should be a string
+  ; to be interpreted as an integer numeral in that base
+  [(δbasic tointeger String Integer)
+   v
+
+   (where v ,(with-handlers ([exn:fail? (λ (e) (term nil))])
+                            ((λ ()
+                               (ext-integer-parse-this (term String)
+                                                      (term Integer))))))]
   
   ;                                                                  
   ;                                             ;                    
@@ -1479,6 +1525,7 @@
                                   pairs
                                   pcall
                                   tonumber
+                                  tointeger
                                   tostring
                                   type
                                   rawequal
@@ -1685,7 +1732,10 @@
    (objr 4)]
   
   [(getMetaTableRef cid)
-   (objr 5)])
+   (objr 5)]
+
+  [(getMetaTableRef Integer)
+   (objr 6)])
 
 (provide getMetaTableRef)
 

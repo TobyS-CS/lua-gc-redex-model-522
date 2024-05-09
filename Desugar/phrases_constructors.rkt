@@ -139,6 +139,8 @@
 
 (struct nmbr (value))
 
+(struct int (nmbr))
+
 (struct str (value))
 
 ; id

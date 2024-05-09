@@ -427,6 +427,15 @@
 
 (provide number-parse-this)
 
+; MODIFY HERE TOBY!!!
+(define (integer-parse-this input)
+  (number-parser (number-lex-this number-lexer
+                                  (open-input-string
+                                   ; unescape \
+                                   (clean input)))))
+
+(provide integer-parse-this)
+
 ; abbrevs for ext-number-lexer
 (define-lex-abbrevs
   ; from ref. manual:
@@ -480,6 +489,8 @@
 
 (provide ext-number-parser)
 
+
+; MODIFY HERE
 (define (ext-number-lex-this lexer input) (lambda () (lexer input)))
 (define (ext-number-parse-this input base)
   (term
@@ -495,3 +506,19 @@
   )
 
 (provide ext-number-parse-this)
+
+; MODIFY HERE
+(define (ext-integer-parse-this input base)
+  (term
+   ; first, we use the previous parser to verify that we received just a string
+   ; with ext-digits and, possible, whitespaces, then we use convert_string over
+   ; the resulting string
+   (convert_string ,(ext-number-parser
+                     (ext-number-lex-this ext-number-lexer
+                                          (open-input-string
+                                           ; unescape \
+                                           (clean input))))
+                   ,base))
+  )
+
+(provide ext-integer-parse-this)

@@ -64,13 +64,17 @@
                                   math.fmod
                                   math.log
                                   math.max
+                                  math.maxinteger
+                                  math.mininteger
                                   math.modf
                                   math.rad
                                   math.sin
                                   math.sinh
                                   math.sqrt
                                   math.tan
-                                  math.tanh))))]
+                                  math.tanh
+                                  math.tointeger
+                                  math.type))))]
 
   ; string library
   [(δ builtinserv any ...)
