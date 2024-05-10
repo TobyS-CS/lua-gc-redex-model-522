@@ -620,15 +620,21 @@
   [(δmath math.ult m n v_3 ...)
    (δmath math.ult m n)]
   
-  [(δmath math.ult String_m String_n)
-   (δmath math.ult Number_m Number_n)
+ ; [(δmath math.ult String_m String_n)
+  ; (δmath math.ult Number_m Number_n)
    
-     (where [Number_m (δbasic tonumber String_m nil)] [Number_n (δbasic tonumber String_n nil)])]
+   ;  (where [Number_m (δbasic tonumber String_m nil)] [Number_n (δbasic tonumber String_n nil)])]
+  [(δmath math.ult Number_1 ... String v ...)
+   (δmath math.ult Number_1 ... Number_2 v ...)
+   
+   (where Number_2 (δbasic tonumber String nil))]
   
-  [(δmath math.ult Number_m Number_n)
-    ,(if (and (integer? term Number_m) (integer? term Number_n))
-        ;HERE
-    )]
+  [(δmath math.ult m n)
+   (if (and (integer? (m)) (integer? (n)))
+        (if (< (inexact->exact m) (inexact->exact n))
+           (term true)
+           (term false))
+        (term false))]
 
   ; default case of math functions
   [(δmath builtinserv any ...)

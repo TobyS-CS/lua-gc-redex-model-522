@@ -74,7 +74,8 @@
                                   math.tan
                                   math.tanh
                                   math.tointeger
-                                  math.type))))]
+                                  math.type
+                                  math.ult))))]
 
   ; string library
   [(δ builtinserv any ...)

@@ -81,6 +81,7 @@
                tostring
                tointeger
                type
+               ult
                xpcall
                ; debug
                debug.setmetatable
@@ -109,6 +110,7 @@
                math.tanh
                math.tointeger
                math.type
+               math.ult
                ; package
                require
                ; string

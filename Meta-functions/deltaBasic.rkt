@@ -1528,6 +1528,7 @@
                                   tointeger
                                   tostring
                                   type
+                                  ult
                                   rawequal
                                   rawget
                                   rawlen

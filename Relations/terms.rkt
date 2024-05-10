@@ -211,6 +211,7 @@
                                           math.tanh
                                           math.tointeger
                                           math.type
+                                          math.ult
                                           ; string
                                           string.len
                                           string.rep
