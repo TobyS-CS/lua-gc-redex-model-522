@@ -913,10 +913,11 @@
       (term 0))
 
   (test-equal (term (δ << 10 1))
-      (term 1024))
+      (term 20))
 
   (test-equal (term (δ >> 10 1))
       (term 5))
+
   
   
   

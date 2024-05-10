@@ -185,10 +185,6 @@
    ; exact->inexact, to use IEEE floating-point representation of a number,
    ; same as Lua
    (number-lit (token-NUMBER (exact->inexact (string->number lexeme))))
-   ("&" (token-&))
-   ("|" (token-||))
-   ("<<" (token-<<))
-   (">>" (token->>))
    ("-" (token--))
    ; Translate to Racket's hexadecimal numbers' notation
    (simp-hex-number-lit

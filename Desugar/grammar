@@ -10,14 +10,9 @@
 %left  'LT' 'GT' 'LE' 'GE' 'EQ' 'NOTEQ'
 %right  'CONCAT'
 %left  '+' '-'
-%left  '*' '/' '%'
+%left  '*' '/' '%' '<<' '>>' '|' '&' 
 %left  'NOT' '#' 'UNM'
 %right  '^'
-%left BITWISE_OR
-%left BITWISE_XOR
-%left BITWISE_AND
-%left SHIFT_LEFT SHIFT_RIGHT
-%right BITWISE_NOT
 %start (chunk)
 %%
 chunk: block
@@ -129,12 +124,10 @@ exp: 'VARARG'
 | exp '/' exp
 | exp '%' exp
 | exp '^' exp
-| exp 'BITWISE_AND' exp
-| exp 'BITWISE_OR' exp
-| exp 'BITWISE_XOR' exp
-| 'BITWISE_NOT' exp
-| exp 'SHIFT_LEFT' exp
-| exp 'SHIFT_RIGHT' exp
+| exp '&' exp
+| exp '|' exp
+| exp '<<' exp
+| exp '>>' exp
 | exp 'LT' exp
 | exp 'LE' exp
 | exp 'GT' exp
