@@ -905,6 +905,20 @@
 
   (test-equal (term (δ math.ult 3 10))
           (term true))
+
+  (test-equal (term (δ math.ult 10 3))
+        (term false))
+
+  (test-equal (term (δ & 10 1))
+      (term 0))
+
+  (test-equal (term (δ << 10 1))
+      (term 1024))
+
+  (test-equal (term (δ >> 10 1))
+      (term 5))
+  
+  
   
   (test-equal (term (const 10))
           (term true))

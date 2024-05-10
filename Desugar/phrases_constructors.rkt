@@ -197,6 +197,12 @@
 
 (struct unm ())
 
+;bitwise
+(struct bitwise_and ())
+(struct bitwise_or ())
+(struct bitwise_leftshift ())
+(struct bitwise_rightshift ())
+
 ; strings
 (struct str-concat ())
 
@@ -442,6 +448,10 @@
 
 (define (concrete-grammar-op op)
   (match op
+    ((bitwise_and) (term &))
+    ((bitwise_or) (term ||))
+    ((bitwise_rightshift) (term >>))
+    ((bitwise_leftshift) (term <<))
     ((add) (term +))
 
     ((sub) (term -))

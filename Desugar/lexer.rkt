@@ -65,11 +65,11 @@
                                    BEGINNING_REPEAT
                                    UNM ; arith. negation
                                    ; Add bitwise tokens here
-                                   BITWISE_AND ; &
-                                   BITWISE_OR  ; |
-                                   BITWISE_NOT ; ~
-                                   SHIFT_LEFT  ; <<
-                                   SHIFT_RIGHT ; >>
+                                   & ; &
+                                   ||  ; |
+                                   ~ ; ~
+                                   <<  ; <<
+                                   >> ; >>
                                    ))
 
 (define-tokens non-empty-tokens (STRING NUMBER NAME))
@@ -185,18 +185,10 @@
    ; exact->inexact, to use IEEE floating-point representation of a number,
    ; same as Lua
    (number-lit (token-NUMBER (exact->inexact (string->number lexeme))))
-   ("&" (token-BITWISE_AND))
-   ("|" (token-BITWISE_OR))
-   ("~" (lambda ()
-          (let ((next-char (peek-char input-port)))
-            (cond ((char=? next-char #\=) ; Check for inequality operator
-                   (read-char input-port) ; Consume '='
-                   (token-NOTEQ))
-                  (else
-                   (token-BITWISE_NOT)))))
-   )
-   ("<<" (token-SHIFT_LEFT))
-   (">>" (token-SHIFT_RIGHT))
+   ("&" (token-&))
+   ("|" (token-||))
+   ("<<" (token-<<))
+   (">>" (token->>))
    ("-" (token--))
    ; Translate to Racket's hexadecimal numbers' notation
    (simp-hex-number-lit
@@ -295,6 +287,10 @@
    ("in" (token-IN))
    ("local" (token-LOCAL))
    ("function" (token-FUNCTION))
+   ("&" (token-&))
+   ("|" (token-||))
+   ("<<" (token-<<))
+   (">>" (token->>))
    
    ; identifiers
    (id (token-NAME (string->symbol lexeme)))

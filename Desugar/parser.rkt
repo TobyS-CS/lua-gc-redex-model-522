@@ -53,7 +53,7 @@
           (left LT GT LE GE EQ NOTEQ)
           (right CONCAT)
           (left + -)
-          (left * / %)
+          (left * / % & || << >>)
           ; UNM: to give higher precedence to the unary negation.
           (left NOT \# UNM)
           (right ^))
@@ -505,6 +505,7 @@
          ((exp * exp) (binop (mul) $1 $3))
          ((exp / exp) (binop (div) $1 $3))
          ((exp % exp) (binop (mod) $1 $3))
+         ((exp & exp) (binop (bitwise_and) $1 $3))
          ((exp ^ exp) (binop (pow) $1 $3))
          ((exp LT exp) (binop (lt) $1 $3))
          ((exp LE exp) (binop (le) $1 $3))

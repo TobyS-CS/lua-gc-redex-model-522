@@ -203,6 +203,37 @@
    (where String ,(string-append (symbol->string (term any))
                                  ": erroneous parameters"))]
 
+  ;BITWISE OPERATORS
+  ;Using * as a base
+
+  ;bitwise_and
+  [(δbasic & Number_1 Number_2)
+   ,(bitwise-and (term Number_3) (term Number_4))
+   
+   (where Number_3 ,(real->double-flonum (term Number_1)))
+   (where Number_4 ,(real->double-flonum (term Number_2)))]
+  
+  ;bitwise_or
+  [(δbasic || Number_1 Number_2)
+   ,(bitwise-ior (term Number_3) (term Number_4))
+   
+   (where Number_3 ,(real->double-flonum (term Number_1)))
+   (where Number_4 ,(real->double-flonum (term Number_2)))]
+
+  ;These aren't done
+  ;bitwise_rightshift
+  [(δbasic >> Number_1 Number_2)
+   ,(arithmetic-shift (term Number_3) (-1 * (term Number_4)))
+   
+   (where Number_3 ,(real->double-flonum (term Number_1)))
+   (where Number_4 ,(real->double-flonum (term Number_2)))]
+
+  ;bitwise_leftshift
+  [(δbasic << Number_1 Number_2)
+   ,(arithmetic-shift (term Number_3) (term Number_4))
+   
+   (where Number_3 ,(real->double-flonum (term Number_1)))
+   (where Number_4 ,(real->double-flonum (term Number_2)))]
     
   ;                                                                                                                          
   ;                             ;                        ;;                                     ;                            
@@ -1688,7 +1719,20 @@
    "__lt"]
   
   [(binopeventkey <=)
-   "__le"])
+   "__le"]
+
+  [(binopeventkey &)
+   "__bitwise_and"]
+
+    [(binopeventkey &)
+   "__bitwise_or"]
+
+    [(binopeventkey >>)
+   "__bitwise_shift_right"]
+
+    [(binopeventkey <<)
+   "__bitwise_shift_left"]
+   )
 
 (provide binopeventkey)
 

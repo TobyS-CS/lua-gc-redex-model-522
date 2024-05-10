@@ -1,1 +1,0 @@
-("8.12" ta6osx ("190521aade283f9e1377a0047e2d1f8b9f8529d9" . "4347a02719ff2e1b2304d9bc25728a90613ce329") #"/Users/sean.h.koo/Desktop/CS522/lua-gc-redex-model-522/Desugar/./lexer.rkt" (collects #"drracket" #"private" #"drracket-errortrace-key.rkt") (collects #"racket" #"main.rkt") (collects #"racket" #"runtime-config.rkt") (collects #"rackunit" #"main.rkt"))
