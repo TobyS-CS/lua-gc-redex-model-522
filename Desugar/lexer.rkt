@@ -287,6 +287,7 @@
    ("|" (token-||))
    ("<<" (token-<<))
    (">>" (token->>))
+   ("~" (token-~))
    
    ; identifiers
    (id (token-NAME (string->symbol lexeme)))

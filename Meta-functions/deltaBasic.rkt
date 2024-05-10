@@ -223,6 +223,13 @@
    
    (where Number_3 ,(inexact->exact (term Number_1)))
    (where Number_4 ,(inexact->exact (term Number_2)))]
+
+  ;bitwise_xor
+  [(δbasic ~ Number_1 Number_2)
+   ,(bitwise-xor  (term Number_3) (term Number_4))
+   
+   (where Number_3 ,(inexact->exact (term Number_1)))
+   (where Number_4 ,(inexact->exact (term Number_2)))]
     
   ; default case of binop and unop
   [(δbasic any v ...)
@@ -1733,7 +1740,12 @@
 
     [(binopeventkey <<)
    "__bitwise_shift_left"]
+
+    [(binopeventkey ~)
+   "__bitwise_xor"]
    )
+
+   
 
 (provide binopeventkey)
 

@@ -1,1 +1,0 @@
-("8.12" ta6nt ("bc775215affb011e0fdadce6ab252107ee214a83" . "4376688aee926ca862db85a290710908f0bfe47d") #"C:\\Users\\tobys\\OneDrive\\cleanup\\Documents\\GitHub\\lua-gc-redex-model-522\\coreGrammar.rkt" (collects #"drracket" #"private" #"drracket-errortrace-key.rkt") (collects #"racket" #"main.rkt") (collects #"racket" #"runtime-config.rkt") (collects #"redex" #"main.rkt"))

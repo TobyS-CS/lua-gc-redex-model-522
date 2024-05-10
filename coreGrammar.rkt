@@ -134,7 +134,7 @@
   
   
   ; primitive operators
-  [arithop + - * / ^ % & || << >>]
+  [arithop + - * / ^ % & || << >> ~]
   
   [relop < <= > >=]
 

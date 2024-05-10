@@ -147,6 +147,9 @@
   (check-equal? (lua-lexer (open-input-string ">>"))
                 (token->>))
 
+  (check-equal? (lua-lexer (open-input-string "~"))
+              (token-~))
+
   (check-equal? (lua-lexer (open-input-string "^"))
                 (token-^))
 

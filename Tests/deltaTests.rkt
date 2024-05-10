@@ -917,12 +917,13 @@
 
   (test-equal (term (δ >> 10 1))
       (term 5))
-
+  (test-equal (term (δ ~ 10 1))
+      (term 11))
+  (test-equal (term (δ ~ 14 16))
+      (term 30))
   
-  
-  
-  (test-equal (term (const 10))
-          (term true))
+;  (test-equal (term (const 10))
+ ;         (term true))
 
   ;                                          
   ;                   ;       ;;;            

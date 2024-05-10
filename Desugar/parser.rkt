@@ -53,7 +53,7 @@
           (left LT GT LE GE EQ NOTEQ)
           (right CONCAT)
           (left + -)
-          (left * / % & || << >>)
+          (left * / % & || << >> ~)
           ; UNM: to give higher precedence to the unary negation.
           (left NOT \# UNM)
           (right ^))

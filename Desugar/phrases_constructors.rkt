@@ -194,6 +194,7 @@
 (struct bitwise_or ())
 (struct bitwise_leftshift ())
 (struct bitwise_rightshift ())
+(struct bitwise_xor ())
 
 ; strings
 (struct str-concat ())
@@ -441,6 +442,7 @@
     ((bitwise_or) (term ||))
     ((bitwise_rightshift) (term >>))
     ((bitwise_leftshift) (term <<))
+    ((bitwise_xor) (term ~))
     ((add) (term +))
 
     ((sub) (term -))

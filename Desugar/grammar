@@ -10,7 +10,7 @@
 %left  'LT' 'GT' 'LE' 'GE' 'EQ' 'NOTEQ'
 %right  'CONCAT'
 %left  '+' '-'
-%left  '*' '/' '%' '<<' '>>' '|' '&' 
+%left  '*' '/' '%' '<<' '>>' '|' '&' '~'
 %left  'NOT' '#' 'UNM'
 %right  '^'
 %start (chunk)
@@ -128,6 +128,7 @@ exp: 'VARARG'
 | exp '|' exp
 | exp '<<' exp
 | exp '>>' exp
+| exp '~' exp
 | exp 'LT' exp
 | exp 'LE' exp
 | exp 'GT' exp
