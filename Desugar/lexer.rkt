@@ -67,7 +67,6 @@
                                    ; Add bitwise tokens here
                                    BITWISE_AND ; &
                                    BITWISE_OR  ; |
-                                   BITWISE_XOR ; ^
                                    BITWISE_NOT ; ~
                                    SHIFT_LEFT  ; <<
                                    SHIFT_RIGHT ; >>
@@ -188,7 +187,6 @@
    (number-lit (token-NUMBER (exact->inexact (string->number lexeme))))
    ("&" (token-BITWISE_AND))
    ("|" (token-BITWISE_OR))
-   ("^" (token-BITWISE_XOR))
    ("~" (lambda ()
           (let ((next-char (peek-char input-port)))
             (cond ((char=? next-char #\=) ; Check for inequality operator
