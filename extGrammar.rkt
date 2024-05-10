@@ -17,7 +17,10 @@
         (s (renv ...) LocalBody)
         ; to allow intermediate states of execution of a funtioncall
         (s (renv ...) RetStat)
-        
+
+        (const Name = e)
+        (const Name_1 Name_2 ... = e_1 e_2 ...) 
+
         ; error objects
         ($err v)]
 
@@ -38,6 +41,12 @@
      
      (e explabel tid ...)
      ]
+
+  [const-declaration (const Name = e) ; Single constant declaration
+                     (const Name_1 Name_2 ... = e_1 e_2 ...) ; Multiple constant declarations
+                     ]
+
+
 
   ; identifiers of variables and refs., to ease the definition of several
   ; substitution functions
@@ -72,9 +81,11 @@
   [evar r
         (v \[ v \])]
 
+
   [var ....
-       ; run-time expression
-       evar]
+       evar
+       (const Name = e)
+       ]
   
   ; terms: s ∪ e; for better spec. of some relations
   [t s e]

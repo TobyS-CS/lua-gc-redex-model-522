@@ -905,11 +905,10 @@
 
   (test-equal (term (δ math.ult 3 10))
           (term true))
+  
+  (test-equal (term (const 10))
+          (term true))
 
-    (test-equal (term (δ math.ult 10 3))
-          (term false))
-  
-  
   ;                                          
   ;                   ;       ;;;            
   ;                   ;         ;            

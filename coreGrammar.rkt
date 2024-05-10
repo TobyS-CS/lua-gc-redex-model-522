@@ -14,8 +14,8 @@
         (if e then s else s end)
         (while e do s end)
         ($iter e do s end)
-        (local Name_1 Name_2 ... = e ... in s end)]
-
+        (local Name_1 Name_2 ... = e ... in s end)
+        (const Name_1 Name_2 ... = e ... in s end)]
   ; Lua's block of code: it helps to avoid an ambiguity in the grammar, between
   ; funcalls and concat. of stats
   [s sing

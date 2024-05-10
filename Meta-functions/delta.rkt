@@ -6,13 +6,31 @@
          "./deltaString.rkt"
          "./deltaTable.rkt")
 
-
 ; We define the semantics of the binary and unary operators of our language
 ; in terms of operations of PLT Racket. The "," symbol is treated as an escape
 ; to PLT Racket code. So, in general, the semantics of an expression
 ; (◇ op_1 op_2) is defined as the PLT Racket code (◇ (term op_1) (term op_2))
 ; when ◇ is also an operator of PLT Racket.
 (define-metafunction ext-lang
+
+  ; Handling const declaration
+  [(δ (const-declaration Name e) θ)
+   ; Check if Name is already defined and is a const
+   (if (and (defined? Name θ) (const? Name θ))
+       (error "ConstError" "Cannot reassign to a const variable")
+       ; Otherwise, update the environment
+       (extend-env-const Name (δ e θ) θ))]
+
+  ; Define how to extend environment with const
+  [(δ Name value θ)
+   ; Assuming θ can track constness, add the new const variable
+   (extend-env Name value true θ)] ; 'true' might indicate constness
+
+  ; Utility to check if a variable is const
+  [(δ Name θ)
+   ; Retrieve constness information from θ
+   (const-status Name θ)]
+
   [(δ binop any ...)
    (δbasic binop any ...)]
 
