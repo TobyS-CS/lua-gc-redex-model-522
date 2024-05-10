@@ -629,9 +629,9 @@
    
    (where Number_2 (δbasic tonumber String nil))]
   
-  [(δmath math.ult m n)
-   (if (and (integer? (m)) (integer? (n)))
-        (if (< (inexact->exact m) (inexact->exact n))
+  [(δmath math.ult Number_m Number_n)
+   ,(if (and (integer? (term Number_m)) (integer? (term Number_n)))
+        (if (< (inexact->exact (term Number_m)) (inexact->exact (term Number_n)))
            (term true)
            (term false))
         (term false))]

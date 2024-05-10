@@ -903,8 +903,11 @@
   (test-equal (term (δ math.tointeger "2.0"))
             (term 2))
 
-  (test-equal (term (δ math.ult 10 3))
+  (test-equal (term (δ math.ult 3 10))
           (term true))
+
+    (test-equal (term (δ math.ult 10 3))
+          (term false))
   
   
   ;                                          

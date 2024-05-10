@@ -350,6 +350,12 @@
                         (return ($builtIn math.type (<<<)))
                         end))
             ))
+   (cons "math.ult"
+         (term (((_ENV \[ "math" \]) \[ "ult" \])
+            = (function $math.ult (<<<)
+                  (return ($builtIn math.ult (<<<)))
+                  end))
+            ))
    ;                         
    ;                         
    ;   ;                                                          
