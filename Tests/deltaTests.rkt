@@ -909,6 +909,12 @@
   (test-equal (term (δ math.ult 10 3))
         (term false))
 
+  (test-equal (term (δ math.ult 1 -1))
+        (term true))
+
+  (test-equal (term (δ math.ult -1 1))
+        (term false))
+
   (test-equal (term (δ & 10 1))
       (term 0))
 

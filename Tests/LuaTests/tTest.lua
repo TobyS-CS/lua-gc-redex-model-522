@@ -16,6 +16,11 @@ print("~ 10 1")
 print(10 ~ 1)
 print("~ 14 16")
 print(14 ~ 16)
+print(math.ult(3, 10))
+print(math.ult(10, 3))
+print(math.ult(1, -1))
+print(math.ult(-1, 1))
+
 
 if integer == float then
     print("Integer 4 is equal to float 4.0")

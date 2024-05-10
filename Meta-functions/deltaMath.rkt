@@ -631,7 +631,7 @@
   
   [(δmath math.ult Number_m Number_n)
    ,(if (and (integer? (term Number_m)) (integer? (term Number_n)))
-        (if (< (inexact->exact (term Number_m)) (inexact->exact (term Number_n)))
+        (if (< (modulo (term Number_m) 4294967296) (modulo (term Number_n) 4294967296))
            (term true)
            (term false))
         (term false))]
